@@ -4,11 +4,11 @@ langchain==0.1.14
 sentence-transformers==2.6.1
 openai-whisper @ git+https://github.com/openai/whisper.git
 scikit-learn==1.4.2
-numpy==1.24.4
+numpy==1.24.4                  # ✅ supported on Python 3.10/3.11
 pandas==2.2.2
 gTTS==2.3.2
 python-dotenv==1.0.1
 google-generativeai==0.3.2
 streamlit-mic-recorder==0.0.5
-torch==2.1.2          # ⬅️ Downgraded to avoid numpy>=2.0 dependency
+torch==2.1.0                   # ✅ compatible with numpy 1.x
 ffmpeg-python==0.2.0
