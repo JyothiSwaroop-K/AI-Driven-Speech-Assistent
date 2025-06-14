@@ -4,7 +4,7 @@ numpy==1.24.4
 streamlit==1.33.0
 chromadb==0.4.24
 langchain==0.1.14
-langchain-community==0.0.24
+langchain-community==0.0.30
 sentence-transformers==2.2.2
 huggingface-hub==0.14.1   # 👈 Add this to fix the import error
 openai-whisper==20230918
