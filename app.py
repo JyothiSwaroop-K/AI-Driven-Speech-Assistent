@@ -2,8 +2,11 @@
 import streamlit as st
 import chromadb
 from chromadb.utils import embedding_functions
-from langchain.vectorstores import Chroma
-from langchain.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import Chroma
+from langchain_community.embeddings import HuggingFaceEmbeddings
+
+# from langchain.vectorstores import Chroma
+# from langchain.embeddings import HuggingFaceEmbeddings
 from streamlit_mic_recorder import mic_recorder
 import whisper
 import io
