@@ -10,6 +10,5 @@ gTTS==2.3.2
 python-dotenv==1.0.1
 google-generativeai==0.3.2
 streamlit-mic-recorder==0.0.5
-torch==2.2.2
+torch==2.1.2          # ⬅️ Downgraded to avoid numpy>=2.0 dependency
 ffmpeg-python==0.2.0
-
