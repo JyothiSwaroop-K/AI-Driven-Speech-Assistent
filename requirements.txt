@@ -1,0 +1,14 @@
+streamlit
+chromadb
+langchain
+sentence-transformers
+openai-whisper
+scikit-learn
+numpy
+pandas
+gTTS
+python-dotenv
+google-generativeai
+streamlit-mic-recorder
+torch
+ffmpeg-python
