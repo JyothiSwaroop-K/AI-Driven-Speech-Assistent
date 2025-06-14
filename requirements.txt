@@ -12,5 +12,6 @@ gTTS==2.3.2
 python-dotenv==1.0.1
 google-generativeai==0.3.2
 streamlit-mic-recorder==0.0.5
-torch==2.0.1
+torch==2.0.1+cpu
+-f https://download.pytorch.org/whl/torch_stable.html
 ffmpeg-python==0.2.0
