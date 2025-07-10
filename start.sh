@@ -31,16 +31,33 @@
 
 #!/bin/bash
 
-echo "🔁 Starting custom startup script..."
+# echo "🔁 Starting custom startup script..."
 
-echo "📦 Installing dependencies..."
+# echo "📦 Installing dependencies..."
+# pip install -r requirements.txt || { echo "❌ Dependency install failed"; exit 1; }
+
+# echo "📁 Files in root:"
+# ls -la
+
+# echo "🔨 Building Chroma DB..."
+# python ConvertExcelToChroma.py || { echo "❌ Chroma DB creation failed"; exit 1; }
+
+# echo "🚀 Starting Streamlit app..."
+# streamlit run app.py --server.port=$PORT --server.address=0.0.0.0
+
+#!/bin/bash
+
+echo "🔁 Starting startup script..."
+
+# Step 1: Install dependencies
+echo "📦 Installing Python packages..."
+pip install --upgrade pip
 pip install -r requirements.txt || { echo "❌ Dependency install failed"; exit 1; }
 
-echo "📁 Files in root:"
-ls -la
-
-echo "🔨 Building Chroma DB..."
+# Step 2: Rebuild Chroma DB from Excel (every time app starts)
+echo "🔨 Building Chroma DB from Excel..."
 python ConvertExcelToChroma.py || { echo "❌ Chroma DB creation failed"; exit 1; }
 
-echo "🚀 Starting Streamlit app..."
+# Step 3: Start your Streamlit app (or Flask if using that)
+echo "🚀 Launching Streamlit app..."
 streamlit run app.py --server.port=$PORT --server.address=0.0.0.0
