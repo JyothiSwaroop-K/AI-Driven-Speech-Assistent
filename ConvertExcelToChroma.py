@@ -17,7 +17,9 @@ sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFuncti
 )
 
 # Initialize persistent Chroma client
-client = chromadb.PersistentClient(path=DB_DIR)
+# client = chromadb.PersistentClient(path=DB_DIR)
+client = chromadb.Client()
+
 
 # Check if collection already exists
 existing_collections = [col.name for col in client.list_collections()]

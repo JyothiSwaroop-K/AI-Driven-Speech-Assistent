@@ -7,7 +7,7 @@ langchain==0.1.14
 langchain-community==0.0.30
 sentence-transformers==2.2.2
 huggingface-hub==0.14.1   # 👈 Add this to fix the import error
-openai-whisper==20230918
+# openai-whisper==20230918
 scikit-learn==1.4.2
 pandas==2.2.2
 openpyxl==3.1.2     # 👈 Required for reading Excel files
@@ -15,6 +15,7 @@ gTTS==2.3.2
 python-dotenv==1.0.1
 google-generativeai==0.3.2
 streamlit-mic-recorder==0.0.5
-torch==2.0.1+cpu
--f https://download.pytorch.org/whl/torch_stable.html
+# torch==2.0.1+cpu
+# -f https://download.pytorch.org/whl/torch_stable.html
+torch==2.0.1
 ffmpeg-python==0.2.0

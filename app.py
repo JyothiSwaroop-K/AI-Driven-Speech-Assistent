@@ -21,9 +21,13 @@ import pandas as pd
 import csv
 from datetime import datetime
 import google.generativeai as genai
+import openai
+
 import json
 from dotenv import load_dotenv
 load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
+google_api_key = os.getenv("GOOGLE_API_KEY")
 
 st.set_page_config(page_title="Python Voice Quiz", layout="centered")
 st.title("🎤 Python Voice Quiz (Strict Evaluation)")
@@ -88,7 +92,10 @@ def safe_show_tabs(evaluations, questions, answers):
 
 @st.cache_resource
 def get_chroma_collection():
-    client = chromadb.PersistentClient(path="python_quiz_db")
+    # client = chromadb.PersistentClient(path="python_quiz_db")
+    client = chromadb.Client()
+
+
     embedding_function = embedding_functions.SentenceTransformerEmbeddingFunction(
         model_name="all-MiniLM-L6-v2"
     )
@@ -280,9 +287,16 @@ if st.session_state.questions and not st.session_state.submitted:
         with open(temp_audio_path, "wb") as f:
             f.write(audio_data['bytes'])
         if os.path.exists(temp_audio_path):
-            model = whisper.load_model("base")
-            result = model.transcribe(temp_audio_path)
-            transcribed_text = result['text']
+            # model = whisper.load_model("base")
+            # result = model.transcribe(temp_audio_path)
+            # transcribed_text = result['text']
+
+            openai.api_key = st.secrets["OPENAI_API_KEY"]
+
+            with open(temp_audio_path, "rb") as audio_file:
+                transcript = openai.Audio.transcribe("whisper-1", audio_file)
+
+            transcribed_text = transcript["text"]
             st.session_state.answers[q_index] = transcribed_text
             os.remove(temp_audio_path)
             st.rerun()
