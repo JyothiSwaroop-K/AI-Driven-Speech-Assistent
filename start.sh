@@ -1,63 +1,94 @@
+# # #!/bin/bash
+
+# # # Step 1: Run the script to generate Chroma DB
+# # echo "Running ConvertExcelToChroma.py to initialize ChromaDB..."
+# # python ConvertExcelToChroma.py
+
+# # # Step 2: Launch the Streamlit app
+# # echo "Starting Streamlit app..."
+# # streamlit run app.py --server.port=$PORT --server.address=0.0.0.0
 # #!/bin/bash
 
-# # Step 1: Run the script to generate Chroma DB
-# echo "Running ConvertExcelToChroma.py to initialize ChromaDB..."
-# python ConvertExcelToChroma.py
+# # echo "🔁 Starting custom startup script..."
 
-# # Step 2: Launch the Streamlit app
-# echo "Starting Streamlit app..."
-# streamlit run app.py --server.port=$PORT --server.address=0.0.0.0
-#!/bin/bash
+# # echo "📦 Installing dependencies (if needed)..."
+# # pip install -r requirements.txt
 
-# echo "🔁 Starting custom startup script..."
+# # echo "📁 Files in project root:"
+# # ls -la
 
-# echo "📦 Installing dependencies (if needed)..."
-# pip install -r requirements.txt
+# # echo "🔨 Running ConvertExcelToChroma.py to create Chroma DB..."
+# # python ConvertExcelToChroma.py
 
-# echo "📁 Files in project root:"
-# ls -la
+# # if [ $? -ne 0 ]; then
+# #     echo "❌ ConvertExcelToChroma.py failed."
+# #     exit 1
+# # fi
 
-# echo "🔨 Running ConvertExcelToChroma.py to create Chroma DB..."
-# python ConvertExcelToChroma.py
-
-# if [ $? -ne 0 ]; then
-#     echo "❌ ConvertExcelToChroma.py failed."
-#     exit 1
-# fi
-
-# echo "🚀 Launching Streamlit..."
-# streamlit run app.py --server.port=$PORT --server.address=0.0.0.0
+# # echo "🚀 Launching Streamlit..."
+# # streamlit run app.py --server.port=$PORT --server.address=0.0.0.0
 
 
-#!/bin/bash
+# #!/bin/bash
 
-# echo "🔁 Starting custom startup script..."
+# # echo "🔁 Starting custom startup script..."
 
-# echo "📦 Installing dependencies..."
+# # echo "📦 Installing dependencies..."
+# # pip install -r requirements.txt || { echo "❌ Dependency install failed"; exit 1; }
+
+# # echo "📁 Files in root:"
+# # ls -la
+
+# # echo "🔨 Building Chroma DB..."
+# # python ConvertExcelToChroma.py || { echo "❌ Chroma DB creation failed"; exit 1; }
+
+# # echo "🚀 Starting Streamlit app..."
+# # streamlit run app.py --server.port=$PORT --server.address=0.0.0.0
+
+# #!/bin/bash
+
+# echo "🔁 Starting startup script..."
+
+# # Step 1: Install dependencies
+# echo "📦 Installing Python packages..."
+# pip install --upgrade pip
 # pip install -r requirements.txt || { echo "❌ Dependency install failed"; exit 1; }
 
-# echo "📁 Files in root:"
-# ls -la
-
-# echo "🔨 Building Chroma DB..."
+# # Step 2: Rebuild Chroma DB from Excel (every time app starts)
+# echo "🔨 Building Chroma DB from Excel..."
 # python ConvertExcelToChroma.py || { echo "❌ Chroma DB creation failed"; exit 1; }
 
-# echo "🚀 Starting Streamlit app..."
+# # Step 3: Start your Streamlit app (or Flask if using that)
+# echo "🚀 Launching Streamlit app..."
 # streamlit run app.py --server.port=$PORT --server.address=0.0.0.0
+
 
 #!/bin/bash
 
-echo "🔁 Starting startup script..."
+echo "🔁 Starting app deployment script..."
 
-# Step 1: Install dependencies
-echo "📦 Installing Python packages..."
+# Step 1: Update system packages and install ffmpeg
+echo "📦 Installing system dependencies..."
+apt-get update && apt-get install -y ffmpeg || {
+    echo "❌ Failed to install system packages (ffmpeg)";
+    exit 1;
+}
+
+# Step 2: Upgrade pip and install Python dependencies
+echo "🐍 Installing Python dependencies..."
 pip install --upgrade pip
-pip install -r requirements.txt || { echo "❌ Dependency install failed"; exit 1; }
+pip install -r requirements.txt || {
+    echo "❌ Failed to install Python packages";
+    exit 1;
+}
 
-# Step 2: Rebuild Chroma DB from Excel (every time app starts)
-echo "🔨 Building Chroma DB from Excel..."
-python ConvertExcelToChroma.py || { echo "❌ Chroma DB creation failed"; exit 1; }
+# Step 3: Generate Chroma DB from Excel
+echo "📊 Running ConvertExcelToChroma.py to initialize ChromaDB..."
+python ConvertExcelToChroma.py || {
+    echo "❌ Chroma DB generation failed";
+    exit 1;
+}
 
-# Step 3: Start your Streamlit app (or Flask if using that)
+# Step 4: Start Streamlit app
 echo "🚀 Launching Streamlit app..."
 streamlit run app.py --server.port=$PORT --server.address=0.0.0.0
